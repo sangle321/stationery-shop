@@ -18,8 +18,8 @@ A modern e-commerce website for stationery products built with Django.
 
 1. **Clone the repository:**
    ```bash
-   git clone <repository-url>
-   cd Shop
+   git clone https://github.com/sangle321/stationery-shop
+   cd stationery-shop
    ```
 
 2. **Create and activate a virtual environment:**
