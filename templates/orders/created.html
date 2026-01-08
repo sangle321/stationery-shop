@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container" style="margin-top: 3rem; text-align: center;">
+    <div
+        style="background: white; padding: 3rem; border-radius: 10px; box-shadow: var(--shadow); max-width: 600px; margin: 0 auto;">
+        <div style="font-size: 4rem; color: #22c55e; margin-bottom: 1rem;">
+            <i class="fas fa-check-circle"></i>
+        </div>
+        <h1 style="margin-bottom: 1rem;">Đặt hàng thành công!</h1>
+        <p style="font-size: 1.1rem; color: #64748b; margin-bottom: 2rem;">
+            Cảm ơn bạn đã mua hàng. Mã đơn hàng của bạn là <strong>#{{ order.id }}</strong>.
+        </p>
+        <p style="margin-bottom: 2rem;">
+            Chúng tôi sẽ liên hệ với bạn qua số điện thoại <strong>{{ order.phone }}</strong> để xác nhận đơn hàng trong
+            thời gian sớm nhất.
+        </p>
+        <a href="{% url 'home' %}" class="btn-primary">Tiếp tục mua sắm</a>
+    </div>
+</div>
+{% endblock %}

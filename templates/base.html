@@ -1,0 +1,66 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Cửa Hàng Của Tôi{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+    <header class="header">
+        <div class="container header-content">
+            <a href="{% url 'home' %}" class="logo">VPP BEES25</a>
+            <form action="{% url 'home' %}" method="get" class="search-form">
+                <input type="text" name="q" placeholder="Tìm kiếm sản phẩm..." value="{{ request.GET.q|default:'' }}">
+                <button type="submit"><i class="fas fa-search"></i></button>
+            </form>
+            <div class="header-actions">
+                <a href="{% url 'cart:cart_detail' %}" class="cart-btn">
+                    <i class="fas fa-shopping-cart"></i>
+                    {% if cart|length > 0 %}
+                    <span class="cart-count">{{ cart|length }}</span>
+                    {% endif %}
+                </a>
+            </div>
+        </div>
+    </header>
+
+    {% block content %}{% endblock %}
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Liên Hệ</h3>
+                    <p>Email: hotro@myshop.com</p>
+                    <p>Điện thoại: +84 123 456 789</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Chính Sách</h3>
+                    <a href="#">Vận chuyển</a>
+                    <a href="#">Đổi trả</a>
+                    <a href="#">Điều khoản dịch vụ</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Theo Dõi</h3>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2026 VPP BEES25. CopyRight.
+            </div>
+        </div>
+    </footer>
+
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+
+</html>

@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load humanize %}
+
+{% block content %}
+<section class="banner">
+    <div class="container">
+        <h1>Chào mừng đến với VPP BEES25</h1>
+        <p>Những sản phẩm tốt nhất cho công việc và học tập của bạn</p>
+    </div>
+</section>
+
+<div class="container">
+    <div class="filters">
+        <a href="{% url 'home' %}" class="filter-btn {% if not request.GET.category %}active{% endif %}">Tất cả</a>
+        {% for cat in categories %}
+        <a href="?category={{ cat.slug }}"
+            class="filter-btn {% if request.GET.category == cat.slug %}active{% endif %}">{{ cat.name }}</a>
+        {% endfor %}
+    </div>
+
+    <div class="product-grid">
+        {% for product in products %}
+        <div class="product-card">
+            <a href="{% url 'products:product_detail' product.id product.slug %}">
+                {% if product.image %}
+                <img src="{{ product.image.url }}" alt="{{ product.name }}" class="product-image">
+                {% else %}
+                <div class="product-image"></div>
+                {% endif %}
+            </a>
+            <div class="product-info">
+                <div class="product-category">{{ product.category.name }}</div>
+                <a href="{% url 'products:product_detail' product.id product.slug %}" class="product-title">
+                    {{product.name }}</a>
+
+                <div class="product-footer">
+                    <div class="product-price">
+                        {{ product.price|intcomma }} đ
+                        {% if product.unit %}
+                        <span style="font-size: 0.8rem; font-weight: normal; color: #666;">/ {{ product.unit }}</span>
+                        {% endif %}
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <p>Không tìm thấy sản phẩm nào.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
